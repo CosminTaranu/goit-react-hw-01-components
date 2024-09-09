@@ -1,0 +1,28 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main  # rulează la fiecare push pe branch-ul main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # sau versiunea de Node.js pe care o folosești
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint the code
+        run: npm run lint
+
+      - name: Build the project
+        run: npm run build
